@@ -2,6 +2,7 @@
 import {AddChannel} from './index'
 
 const TeamChannelList = ({children, error =false, loading, type}) => {
+    console.log(error)
     if (error){
         return type === 'team'?(
             <div className="team-channel-list">
