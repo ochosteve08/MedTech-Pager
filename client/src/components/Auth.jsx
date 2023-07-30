@@ -11,6 +11,9 @@ const Auth = () => {
     event.preventDefault();
   };
   const handleChange = (event) => {};
+  const SwitchMode = ()=>{
+    setIsSignup((previousState)=> !previousState)
+  }
   return (
     <div className="auth__form-container">
       <div className="auth__form-container_fields">
@@ -62,22 +65,48 @@ const Auth = () => {
                   name="avatarUrl"
                   //   value={fullName}
                   onChange={handleChange}
+                  required
                 />
               </div>
             )}
             <div className="auth__form-container_fields-content_input">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="confirmPassword">Password</label>
               <input
                 type="password"
-                placeholder="password"
-                name="password"
+                placeholder="confirm password"
+                name="confirmPassword"
                 //   value={fullName}
                 onChange={handleChange}
+                required
               />
             </div>
+            {isSignup && (
+              <div className="auth__form-container_fields-content_input">
+                <label htmlFor="password">Confirm Password</label>
+                <input
+                  type="password"
+                  placeholder="confirm"
+                  name="password"
+                  //   value={fullName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            )}
           </form>
+          <div className="auth__form-container_fields-account">
+            <p>
+              {isSignup ? "Already have an account" : "Don't have an account?"}
+            </p>
+            <span onClick={SwitchMode}>
+                {isSignup ? "SignIn" : "SignUp"}
+            </span>
+          </div>
         </div>
       </div>
+       <div className="auth__form-container_image">
+        <img src={Signin} alt="sign in" />
+       </div>
     </div>
   );
 };
