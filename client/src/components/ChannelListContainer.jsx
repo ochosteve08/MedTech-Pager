@@ -2,6 +2,7 @@ import { ChannelList, useChatContext } from "stream-chat-react";
 import Cookie from "universal-cookie";
 import HospitalIcon from "../assets/hospital.png";
 import LogoutIcon from "../assets/logout.png";
+import {ChannelSearch} from './index'
 
 const SideBar = () => (
   <div className="channel-list__sidebar">
@@ -33,6 +34,7 @@ const ChannelListContainer = () => {
       <SideBar />
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
+        <ChannelSearch/>
       </div>
     </>
   );
