@@ -1,16 +1,29 @@
 import Cookie from "universal-cookie";
 import { useState } from "react";
 import axios from "axios";
-import Signin from "../assets/signup.jpg";
+import SignIn from "../assets/signup.jpg";
+
+const initialState = {
+    FullName: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+    phoneNumber: '',
+    avatarUrl: '',
+}
 
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(initialState);
 
   const OnSubmit = (event) => {
     event.preventDefault();
   };
-  const handleChange = (event) => {};
+  const handleChange = (event) => {
+    setForm({...form,
+        [event.target.name]: event.target.value
+    })
+  };
   const SwitchMode = ()=>{
     setIsSignup((previousState)=> !previousState)
   }
@@ -93,20 +106,21 @@ const Auth = () => {
                 />
               </div>
             )}
+            <div className="auth__form-container_fields-content_button">
+              <button>{isSignup ? "SignUp" : "SignIn"}</button>
+            </div>
           </form>
           <div className="auth__form-container_fields-account">
             <p>
               {isSignup ? "Already have an account" : "Don't have an account?"}
             </p>
-            <span onClick={SwitchMode}>
-                {isSignup ? "SignIn" : "SignUp"}
-            </span>
+            <span onClick={SwitchMode}>{isSignup ? "SignIn" : "SignUp"}</span>
           </div>
         </div>
       </div>
-       <div className="auth__form-container_image">
-        <img src={Signin} alt="sign in" />
-       </div>
+      <div className="auth__form-container_image">
+        <img src={SignIn} alt="sign in" />
+      </div>
     </div>
   );
 };
