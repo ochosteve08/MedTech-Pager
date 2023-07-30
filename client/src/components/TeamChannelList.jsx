@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import {AddChannel} from './index'
+// import {AddChannel} from './index'
 
 const TeamChannelList = ({children, error =false, loading, type}) => {
     console.log(error)
