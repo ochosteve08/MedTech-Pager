@@ -5,3 +5,4 @@ export {default as TeamChannelList} from './TeamChannelList'
 export {default as AddChannel} from './AddChannel'
 export {default as SearchIcon} from './SearchIcon'
 export { default as TeamChannelPreview } from "./TeamChannelPreview";
+export { default as Auth } from "./Auth";
