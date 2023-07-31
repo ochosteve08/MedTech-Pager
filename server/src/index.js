@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const authRoutes = require('./routers/Auth.js')
-const { connectToMongoDb, environmentVariables } = require("./config");
+const {  environmentVariables } = require("./config");
 
 
 app.use(cors());
@@ -19,10 +19,6 @@ app.get('/', (req, res) => {
 })
 
 
-const main = async () => {
-  console.info("Starting server");
-  await connectToMongoDb();
-  console.info("Connected to MongoDB");
   app.listen(environmentVariables.APP_PORT || 8000, (err) => {
     try {
       console.info(
@@ -32,6 +28,3 @@ const main = async () => {
       console.log(error);
     }
   });
-};
-
-main();

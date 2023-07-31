@@ -7,7 +7,7 @@ const  environmentVariables  = require("../config");
 const Signup = async (req,res)=>{
     try{
         const userId = crypto.randomBytes(16).toString('hex')
-        const {fullName,username, phoneNumber, password, avatarUrl}= req.body;
+        const {fullName,username, phoneNumber, password}= req.body;
         const ServerClient = connect(
           environmentVariables.STREAM_API_KEY,
           environmentVariables.STREAM_API_SECRET,
