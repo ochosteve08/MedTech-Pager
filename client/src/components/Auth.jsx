@@ -3,16 +3,16 @@ import { useState } from "react";
 import axios from "axios";
 import SignIn from "../assets/signup.jpg";
 
-const cookies = new Cookies() ;
+const cookies = new Cookies();
 
 const initialState = {
-    FullName: '',
-    username: '',
-    password: '',
-    confirmPassword: '',
-    phoneNumber: '',
-    avatarUrl: '',
-}
+  fullName: "",
+  username: "",
+  password: "",
+  confirmPassword: "",
+  phoneNumber: "",
+  avatarUrl: "",
+};
 
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
@@ -22,38 +22,35 @@ const Auth = () => {
     event.preventDefault();
     const { fullName, username, phoneNumber, password, avatarUrl } = form;
     const URL = "http://localhost:5000/auth";
-    const {data:{token, userId, securedPassword}} = await axios.post(`${URL}/${isSignup ? "signup" : "login"}`, {
+    const {
+      data: { token, userId, securedPassword },
+    } = await axios.post(`${URL}/${isSignup ? "signup" : "login"}`, {
       fullName,
       username,
       phoneNumber,
       password,
-      avatarUrl
+      avatarUrl,
     });
 
-    cookies.set('token', token);
+    cookies.set("token", token);
     cookies.set("username", username);
     cookies.set("fullName", fullName);
     cookies.set("userId", userId);
 
-    if (isSignup){
+    if (isSignup) {
       cookies.set("phoneNumber", phoneNumber);
       cookies.set("avatarUrl", avatarUrl);
       cookies.set("securedPassword", securedPassword);
-
     }
-    window.location.reload()
+    window.location.reload();
   };
-
-
 
   const handleChange = (event) => {
-    setForm({...form,
-        [event.target.name]: event.target.value
-    })
+    setForm({ ...form, [event.target.name]: event.target.value });
   };
-  const SwitchMode = ()=>{
-    setIsSignup((previousState)=> !previousState)
-  }
+  const SwitchMode = () => {
+    setIsSignup((previousState) => !previousState);
+  };
   return (
     <div className="auth__form-container">
       <div className="auth__form-container_fields">
@@ -73,12 +70,11 @@ const Auth = () => {
               </div>
             )}
             <div className="auth__form-container_fields-content_input">
-              <label htmlFor="fullName">Username</label>
+              <label htmlFor="username">Username</label>
               <input
                 type="text"
                 placeholder="username"
                 name="username"
-                // value={fullName}
                 onChange={handleChange}
                 required
               />
@@ -90,7 +86,6 @@ const Auth = () => {
                   type="text"
                   placeholder="phoneNumber"
                   name="phoneNumber"
-                  //   value={fullName}
                   onChange={handleChange}
                   required
                 />
@@ -103,7 +98,6 @@ const Auth = () => {
                   type="text"
                   placeholder="avatarUrl"
                   name="avatarUrl"
-                  //   value={fullName}
                   onChange={handleChange}
                   required
                 />
@@ -114,8 +108,7 @@ const Auth = () => {
               <input
                 type="password"
                 placeholder="confirm password"
-                name="confirmPassword"
-                //   value={fullName}
+                name="password"
                 onChange={handleChange}
                 required
               />
@@ -125,9 +118,8 @@ const Auth = () => {
                 <label htmlFor="password">Confirm Password</label>
                 <input
                   type="password"
+                  name="confirmPassword"
                   placeholder="confirm"
-                  name="password"
-                  //   value={fullName}
                   onChange={handleChange}
                   required
                 />

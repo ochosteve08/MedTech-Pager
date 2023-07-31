@@ -1,13 +1,16 @@
+/* eslint-disable react/prop-types */
 import {
    ChannelList, 
   // useChatContext 
 } from "stream-chat-react";
-// import Cookie from "universal-cookie";
+import Cookies from "universal-cookie";
 import HospitalIcon from "../assets/hospital.png";
 import LogoutIcon from "../assets/logout.png";
 import { ChannelSearch, TeamChannelList, TeamChannelPreview } from "./";
  
-const SideBar = () => (
+
+const cookies = new Cookies();
+const SideBar = ({Logout}) => (
   <div className="channel-list__sidebar">
     <div className="channel-list__sidebar__icon1">
       <div className="icon1__inner">
@@ -16,7 +19,7 @@ const SideBar = () => (
       </div>
     </div>
     <div className="channel-list__sidebar__icon2">
-      <div className="icon1__inner">
+      <div className="icon1__inner" onClick={Logout}>
         <img src={LogoutIcon} alt="logout-icon" width={30} />
       </div>
     </div>
@@ -32,9 +35,21 @@ const CompanyHeader = ()=>(
 
 
 const ChannelListContainer = () => {
+
+  const Logout =()=>{
+    cookies.remove("token");
+    cookies.remove("username"),
+    cookies.remove("fullName"),
+   cookies.remove("userId"),
+   cookies.remove("phoneNumber"),
+   cookies.remove("avatarUrl"),
+   cookies.remove("securedPassword")
+    window.location.reload();
+  };
+
   return (
     <>
-      <SideBar />
+      <SideBar Logout={Logout} />
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch />

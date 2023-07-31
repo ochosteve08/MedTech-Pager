@@ -5,6 +5,7 @@ import "./App.css";
 import Cookies from "universal-cookie";
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
+
 const cookies = new Cookies();
 
 const client = StreamChat.getInstance(API_KEY);
@@ -21,8 +22,10 @@ if (authToken) {
   }, authToken);
 }
 
+
 function App() {
   if (!authToken) return <Auth />;
+  console.log(authToken);
   return (
     <div className="app_wrapper">
       <Chat client={client} theme="team light">
