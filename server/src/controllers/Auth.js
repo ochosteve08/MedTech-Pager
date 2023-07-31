@@ -1,20 +1,31 @@
 const bcrypt = require('bcrypt');
 const {connect} = require('stream')
 const crypto = require('crypto');
-const StreamChat = require('stream-chat')
-const  environmentVariables  = require("../config");
+const StreamChat = require('stream-chat').StreamChat
+const { environmentVariables } = require("../config");
 
 const Signup = async (req,res)=>{
     try{
+      console.log(environmentVariables.STREAM_API_KEY);
         const userId = crypto.randomBytes(16).toString('hex')
         const {fullName,username, phoneNumber, password}= req.body;
-        const ServerClient = connect(
+        const serverClient = new StreamChat(
           environmentVariables.STREAM_API_KEY,
           environmentVariables.STREAM_API_SECRET,
           environmentVariables.STREAM_APP_ID
         );
         const securedPassword = await bcrypt.hash(password, 10)
-        const token = ServerClient.createUserToken(userId);
+        // const token = ServerClient.createUserToken(userId);
+        await serverClient.upsertUser({
+          id: userId,
+          name: username,
+          phoneNumber,
+          securedPassword,
+          fullName
+          // add additional user fields if required
+        });
+
+         const token = serverClient.createUserToken(userId);
         res.status(200).json({token, fullName, username, userId, securedPassword, phoneNumber});
       
     }
