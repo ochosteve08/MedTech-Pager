@@ -4,7 +4,7 @@ import { Chat } from "stream-chat-react";
 import { ChannelListContainer, ChannelContainer, Auth } from "./components";
 import Cookies from "universal-cookie";
 import "./App.css";
-import "stream-chat-react/dist/css/index.css";
+// import "stream-chat-react/dist/css/index.css";
 
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
@@ -48,7 +48,6 @@ function App() {
         <ChannelContainer
           isCreating={isCreating}
           setIsCreating={setIsCreating}
-          isEditing={isEditing}
           setIsEditing={setIsEditing}
           createType={createType}
          

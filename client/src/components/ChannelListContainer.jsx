@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import {
    ChannelList, 
-  // useChatContext 
-} from "stream-chat-react";
+ } from "stream-chat-react";
 import Cookies from "universal-cookie";
 import HospitalIcon from "../assets/hospital.png";
 import LogoutIcon from "../assets/logout.png";
@@ -35,16 +34,21 @@ const CompanyHeader = ()=>(
 )
 
 
-const ChannelListContainer = () => {
+const ChannelListContainer = ({
 
-  const Logout =()=>{
+  setIsEditing,
+  isCreating,
+  setIsCreating,
+  setCreateType,
+}) => {
+  const Logout = () => {
     cookies.remove("token");
     cookies.remove("username"),
-    cookies.remove("fullName"),
-   cookies.remove("userId"),
-   cookies.remove("phoneNumber"),
-   cookies.remove("avatarUrl"),
-   cookies.remove("securedPassword")
+      cookies.remove("fullName"),
+      cookies.remove("userId"),
+      cookies.remove("phoneNumber"),
+      cookies.remove("avatarUrl"),
+      cookies.remove("securedPassword");
     window.location.reload();
   };
 
@@ -57,7 +61,16 @@ const ChannelListContainer = () => {
         <ChannelList
           filters={{}}
           channelRenderFilterFn={() => {}}
-          List={(listProps) => <TeamChannelList {...listProps} type="team" />}
+          List={(listProps) => (
+            <TeamChannelList
+              isCreating={isCreating}
+              setIsCreating={setIsCreating}
+              setIsEditing={setIsEditing}
+              setCreateType={setCreateType}
+              {...listProps}
+              type="team"
+            />
+          )}
           Preview={(previewProps) => (
             <TeamChannelPreview {...previewProps} type="team" />
           )}
@@ -65,7 +78,9 @@ const ChannelListContainer = () => {
         <ChannelList
           filters={{}}
           channelRenderFilterFn={() => {}}
-          List={(listProps) => <TeamChannelList {...listProps} type="messaging" />}
+          List={(listProps) => (
+            <TeamChannelList {...listProps} type="messaging" />
+          )}
           Preview={(previewProps) => (
             <TeamChannelPreview {...previewProps} type="messaging" />
           )}
