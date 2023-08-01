@@ -11,3 +11,5 @@ export {default as CreateChannel} from "./CreateChannel"
 export {default as EditChannel} from "./EditChannel"
 export {default as TeamMessage} from "./TeamMessage"
 export {default as ChannelInfo} from "./ChannelInfo"
+export {default as InviteIcon} from './InviteIcon'
+export {default as CloseCreateChannel} from "./CloseCreateChannel"

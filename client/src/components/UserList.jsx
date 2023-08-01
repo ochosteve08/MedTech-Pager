@@ -2,7 +2,7 @@
 import  { useEffect, useState } from "react";
 import { Avatar, useChatContext } from "stream-chat-react";
 
-import { InviteIcon } from "../assets";
+import { InviteIcon } from "./";
 
 const ListContainer = ({ children }) => {
   return (
@@ -74,7 +74,7 @@ const UserList = ({ setSelectedUsers }) => {
     };
 
     if (client) getUsers();
-  }, []);
+  }, [client, loading]);
 
   if (error) {
     return (
