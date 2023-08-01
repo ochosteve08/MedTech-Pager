@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import {Channel, useChatContext} from 'stream-chat-react'
-import { ChannelInner, CreateChannel, EditChannel } from "./";
+import {
+   ChannelInner, 
+   CreateChannel, EditChannel } from "./";
 
 
 const ChannelContainer = ({isEditing,setIsEditing, isCreating,setIsCreating, createType}) => {
