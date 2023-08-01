@@ -1,8 +1,34 @@
 import React, { useState } from "react";
 import { useChatContext } from "stream-chat-react";
 
+import { UserList, CloseCreateChannel } from "./";
+
+const ChannelNameInput = ({ channelName = "", setChannelName }) => {
+  const handleChange = (event) => {
+    event.preventDefault();
+
+    setChannelName(event.target.value);
+  };
+
+  return (
+    <div className="channel-name-input__wrapper">
+      <p>Name</p>
+      <input
+        value={channelName}
+        onChange={handleChange}
+        placeholder="channel-name "
+      />
+      <p>Add Members</p>
+    </div>
+  );
+};
+
 const CreateChannel = () => {
-  return <div>Createchannel</div>;
+  return (
+    <div>
+      <ChannelNameInput />
+    </div>
+  );
 };
 
 export default CreateChannel;
