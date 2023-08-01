@@ -10,6 +10,7 @@ import { ChannelSearch, TeamChannelList, TeamChannelPreview } from "./";
  
 
 const cookies = new Cookies();
+
 const SideBar = ({Logout}) => (
   <div className="channel-list__sidebar">
     <div className="channel-list__sidebar__icon1">
