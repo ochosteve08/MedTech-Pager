@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useChatContext } from "stream-chat-react";
 
 import { UserList, CloseCreateChannel } from "./";
@@ -25,7 +25,30 @@ const ChannelNameInput = ({ channelName, setChannelName }) => {
 };
 
 const CreateChannel = ({ setIsCreating, createType }) => {
+  const {client, setActiveChannel} = useChatContext()
   const [channelName,setChannelName] = useState('')
+const [ selectedUsers,setSelectedUsers] = useState([client.userID||''])
+
+ const createChannel = async (e) => {
+   e.preventDefault();
+
+   try {
+     const newChannel = await client.channel(createType, channelName, {
+       name: channelName,
+       members: selectedUsers,
+     });
+
+     await newChannel.watch();
+
+     setChannelName("");
+     setIsCreating(false);
+     setSelectedUsers([client.userID]);
+     setActiveChannel(newChannel);
+   } catch (error) {
+     console.log(error);
+   }
+ };
+
   return (
     <div className="create-channel__container">
       <div className="create-channel__header">
@@ -41,7 +64,12 @@ const CreateChannel = ({ setIsCreating, createType }) => {
           setChannelName={setChannelName}
         />
       )}
-      <UserList/>
+      <UserList setSelectedUsers={setSelectedUsers} />
+      <div className="create-channel__button-wrapper" onClick={createChannel}>
+        <p>
+          {createType === "team" ? "Create Channel" : "Create Message Group"}
+        </p>
+      </div>
     </div>
   );
 };
