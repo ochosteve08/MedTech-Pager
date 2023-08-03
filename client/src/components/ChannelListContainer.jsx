@@ -48,10 +48,10 @@ const ChannelListContent = ({
   isCreating,
   setIsCreating,
   setCreateType,
+  setToggleContainer,
 }) => {
-   
   const { client } = useChatContext();
- 
+
   const Logout = () => {
     cookies.remove("token");
     cookies.remove("username"),
@@ -63,7 +63,7 @@ const ChannelListContent = ({
     window.location.reload();
   };
 
-    const filters = { members: { $in: [client.userID] } };
+  const filters = { members: { $in: [client.userID] } };
   return (
     <>
       <SideBar Logout={Logout} />
@@ -71,7 +71,7 @@ const ChannelListContent = ({
         <CompanyHeader />
         <ChannelSearch />
         <ChannelList
-          filters={{ filters }}
+          filters={filters}
           channelRenderFilterFn={customChannelTeamFilter}
           List={(listProps) => (
             <TeamChannelList
@@ -81,10 +81,17 @@ const ChannelListContent = ({
               setCreateType={setCreateType}
               {...listProps}
               type="team"
+              setToggleContainer={setToggleContainer}
             />
           )}
           Preview={(previewProps) => (
-            <TeamChannelPreview {...previewProps} type="team" />
+            <TeamChannelPreview
+              {...previewProps}
+              type="team"
+              setIsCreating={setIsCreating}
+              setIsEditing={setIsEditing}
+              setToggleContainer={setToggleContainer}
+            />
           )}
         />
         <ChannelList
@@ -98,10 +105,17 @@ const ChannelListContent = ({
               setCreateType={setCreateType}
               {...listProps}
               type="messaging"
+              setToggleContainer={setToggleContainer}
             />
           )}
           Preview={(previewProps) => (
-            <TeamChannelPreview {...previewProps} type="messaging" />
+            <TeamChannelPreview
+              {...previewProps}
+              setIsCreating={setIsCreating}
+              setIsEditing={setIsEditing}
+              setToggleContainer={setToggleContainer}
+              type="messaging"
+            />
           )}
         />
       </div>
