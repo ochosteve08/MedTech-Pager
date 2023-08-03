@@ -11,7 +11,7 @@ const TeamChannelList = ({
   setCreateType,
   setIsEditing,
 }) => {
- console.log(type)
+
   if (error) {
     return type === "team" ? (
       <div className="team-channel-list">
