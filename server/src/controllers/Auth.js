@@ -23,7 +23,7 @@ const Signup = async (req, res) => {
       fullName,
       // add additional user fields if required
     });
-
+    console.log("userId:",userId)
     const token = serverClient.createToken(userId);
     res
       .status(200)
