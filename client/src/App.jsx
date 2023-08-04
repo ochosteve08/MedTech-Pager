@@ -34,14 +34,13 @@ function App() {
   const [createType, setCreateType] = useState("");
 
   if (!authToken) return <Auth />;
-  console.log(authToken);
+ 
   return (
-    <div className="app_wrapper">
+    <div className="app__wrapper">
       <Chat client={client} theme="team light">
         <ChannelListContainer
           isCreating={isCreating}
           setIsCreating={setIsCreating}
-          isEditing={isEditing}
           setIsEditing={setIsEditing}
           setCreateType={setCreateType}
         />
@@ -50,7 +49,7 @@ function App() {
           setIsCreating={setIsCreating}
           setIsEditing={setIsEditing}
           createType={createType}
-         
+          isEditing={isEditing}
         />
       </Chat>
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import {
   Avatar,
@@ -9,7 +10,7 @@ import { ChannelInfo}  from "./";
 
 export const GiphyContext = React.createContext({});
 
-// eslint-disable-next-line react/prop-types
+// // eslint-disable-next-line react/prop-types
 const ChannelInner = ({ setIsEditing }) => {
    const { channel, watcher_count } = useChannelStateContext();
   const { client } = useChatContext();
@@ -82,3 +83,4 @@ const ChannelInner = ({ setIsEditing }) => {
 };
 
 export default ChannelInner;
+

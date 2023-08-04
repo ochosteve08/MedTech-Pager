@@ -57,6 +57,7 @@ const [ selectedUsers,setSelectedUsers] = useState([client.userID||''])
             ? "Create a New Channel"
             : "Send a Direct Message"}
         </p>
+        <CloseCreateChannel setIsCreating={setIsCreating} />
       </div>
       {createType === "team" && (
         <ChannelNameInput
